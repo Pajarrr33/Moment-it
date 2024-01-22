@@ -3,10 +3,15 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\TmpImg;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Upload extends BaseController
 {
+    public function __construct() {
+       $this->Tmpmodel = new TmpImg();
+    }
+
     public function upload()
     {
         $img = $this->request->getFile('img');
@@ -27,6 +32,17 @@ class Upload extends BaseController
             unlink(ROOTPATH . 'public/upload/tmp_img/' . $folder . '/index.html');
         }
 
-        return $folder;
+        $data =  [
+            'folder' => 'public/upload/tmp_img/' . $folder . "/",
+            'img' => $randomName . "." . $imgekstension
+        ];
+
+        $this->Tmpmodel->insert($data);
+
+        $tmp_id = $this->Tmpmodel->getInsertID();
+
+        $tmp_id_str = (string) $tmp_id;
+
+        return $tmp_id_str;
     }
 }
