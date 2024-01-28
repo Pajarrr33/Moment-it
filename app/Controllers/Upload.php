@@ -14,7 +14,7 @@ class Upload extends BaseController
 
     public function upload()
     {
-        $img = $this->request->getFile('img');
+        $img = $this->request->getFiles('img')['img'][0];
         if(!$img)
         {
             return 'Error' ;
@@ -25,15 +25,15 @@ class Upload extends BaseController
         $imgekstension = $img->guessExtension();
         $randomName = uniqid('img-' , true);
         $folder = uniqid() . '-' . date('Y-m-d') ;
-        $img->move(ROOTPATH . 'public/upload/tmp_img/' . $folder,$randomName . "." . $imgekstension);
+        $img->move(FCPATH . '/upload/tmp_img/' . $folder,$randomName . "." . $imgekstension);
 
         // Remove the index.html file if it exists
-        if (is_file(ROOTPATH . 'public/upload/tmp_img/' . $folder . '/index.html')) {
-            unlink(ROOTPATH . 'public/upload/tmp_img/' . $folder . '/index.html');
+         if (is_file(FCPATH . 'upload/tmp_img/' . $folder . '/index.html')) {
+            unlink(FCPATH . 'upload/tmp_img/' . $folder . '/index.html');
         }
 
         $data =  [
-            'folder' => 'public/upload/tmp_img/' . $folder . "/",
+            'folder' => $folder,
             'img' => $randomName . "." . $imgekstension
         ];
 

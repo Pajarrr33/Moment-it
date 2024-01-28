@@ -4,10 +4,10 @@
 
 <div class="w-screen h-screen bg-black text-white flex items-center">
     <div class="container mx-auto w-full">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/buat-postingan" method="post" enctype="multipart/form-data">
             <div class="grid grid-cols-1 bg-white sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 h-100 pr-5 pl-5 w-3/4 mx-auto rounded-lg">
                 <div class="col-span-1 0 p-4 my-4 rounded-lg">
-                    <input type="file" name="img" id="img" multiple>
+                    <input type="file" name="img[]" id="img" multiple="multiple">
                 </div>
                 <div class="col-span-1 my-7">
                     <div>
@@ -58,7 +58,8 @@
         const pond = FilePond.create(inputElement);
         pond.setOptions({
             server: {
-                process: '/tmp-img'
+                process: '/tmp-img',
+                allowMultiple: true,
             }
         });
     </script>
