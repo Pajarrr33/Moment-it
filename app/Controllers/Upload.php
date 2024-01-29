@@ -45,4 +45,21 @@ class Upload extends BaseController
 
         return $tmp_id_str;
     }
+
+    public function cancel()
+    {
+        $TmpId = key($this->request->getRawInput());
+
+        $Tmpimg = $this->Tmpmodel->where("id",$TmpId)->first() ;
+        
+        if($Tmpimg)
+        {
+            unlink(FCPATH . 'upload/tmp_img/' . $Tmpimg['folder'] . "/" . $Tmpimg['img'] );
+            rmdir(FCPATH . 'upload/tmp_img/' . $Tmpimg['folder']);
+
+            $this->Tmpmodel->where("id", $TmpId)->delete();
+        }
+
+        return null ;
+    }
 }

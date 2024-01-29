@@ -2,6 +2,12 @@
 
 <?= $this->section('content') ?>
 
+<style>
+    .filepond--root{
+        max-height: 350px;
+    }
+</style>
+
 <div class="w-screen h-screen bg-black text-white flex items-center">
     <div class="container mx-auto w-full">
         <form action="/buat-postingan" method="post" enctype="multipart/form-data">
@@ -60,6 +66,7 @@
             server: {
                 process: '/tmp-img',
                 allowMultiple: true,
+                revert: '/tmp-img-delete'
             }
         });
     </script>
