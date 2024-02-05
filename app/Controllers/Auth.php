@@ -15,6 +15,8 @@ class Auth extends BaseController
         $this->validation = \Config\Services::validation();
 
         $this->session = \Config\Services::session();
+
+        $this->email = \Config\Services::email();
     }
 
     public function login()
@@ -129,10 +131,11 @@ class Auth extends BaseController
             'email' => $data['email'],
             'password' => $password,
             'salt' => $salt,
+            'is_active' => '0',
         ]);
 
         //arahkan ke halaman login
-        session()->setFlashdata('login', 'Anda berhasil mendaftar, silahkan login');
+        session()->setFlashdata('login', 'You have successfully registered, please check your email to activate your account');
         return redirect()->to('/login');
     }
 

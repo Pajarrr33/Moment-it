@@ -2,13 +2,6 @@
     border-radius: 50px;
 }
 
-.w-726{
-    width: 726px;
-}
-
-.w-670{
-    width: 670px;
-}
 
 .h-100{
     height: 26rem;
@@ -18,6 +11,94 @@
     font-family: 'Poppins';
 }
 
-.w-646{
-    width: 464px;
+.w-726{
+    width: 206px;
+}
+
+.w-670{
+    width: 150px;
+}
+
+.columns-xs{
+    columns: 320px;
+}
+
+.w-items{
+    width: 100%;
+}
+
+.max-w-34{
+    max-width: 8.5rem;
+}
+
+
+@media (min-width: 375px) {
+    .w-726{
+        width: 256px;
+    }
+    
+    .w-670{
+        width: 172px;
+    }
+}
+
+@media (min-width: 425px) {
+    .w-726{
+        width: 276px;
+    }
+    
+    .w-670{
+        width: 192px;
+    }
+}
+
+@media (min-width: 500px) {
+    .w-726{
+        width: 382px;
+    }
+    
+    .w-670{
+        width: 322px;
+    }
+}
+
+
+@media (min-width: 640px) {
+    .sm\:w-726{
+        width: 526px;
+    }
+    
+    .sm\:w-670{
+        width: 470px;
+    }
+}
+
+@media (min-width: 768px) {
+    .md\:w-726{
+        width: 326px;
+    }
+    
+    .md\:w-670{
+        width: 270px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\:w-726{
+        width: 626px;
+    }
+    
+    .lg\:w-670{
+        width: 570px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .xl\:w-726{
+        width: 726px;
+    }
+    
+    .xl\:w-670{
+        width: 670px;
+    }
 }

@@ -22,21 +22,26 @@
             <?php var_dump($session->get('error')) ; endif ; ?>
             <div class="mt-5">
                 <input type="email" name="email" id=""
-                    class="font-poppins border border-black md:p-5 w-646 h-13 rounded-50 text-black" placeholder="Email">
+                    class="font-poppins border border-black text-black p-3 sm:w-72 w-72 h-12 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-lg md:w-96 md:h-16 rounded-50 text-xl"
+                    placeholder="Email">
             </div>
             <div class="mt-10">
                 <input type="password" name="password" id=""
-                    class="font-poppins border border-black md:p-5 w-646 h-13 rounded-50 text-black" placeholder="Password">
+                    class="font-poppins border border-black text-black p-3 sm:w-72 w-72 h-12 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-lg md:w-96 md:h-16 rounded-50 text-xl"
+                    placeholder="Password">
             </div>
-
             <div class="mt-10">
-                <button type="submit" class="flex flex-col items-center justify-center font-poppins md:p-5 w-646 h-13 rounded-50 text-white" style="background-color: #376FFF;">
+                <button type="submit"
+                    class="flex flex-col items-center justify-center font-poppins text-white p-3 w-72 h-12 rounded-50 text-md sm:w-72 sm:h-12 sm:rounded-50 sm:text-lg md:w-96 md:h-16 rounded-50 text-xl "
+                    style="background-color: #376FFF;">
                     <h1 class="font-poppins text-2xl"><b>Login</b></h1>
                 </button>
             </div>
 
+
             <div class="mt-5 md:flex flex-col items-center justify-center">
-                <h1 class="font-poppins">Doesnt have account? <a href="/register" class="hover:underline focus:underline">Register here</a></h1>
+                <h1 class="font-poppins">Doesnt have account? <a href="/register"
+                        class="hover:underline focus:underline">Register here</a></h1>
             </div>
         </form>
     </div>
