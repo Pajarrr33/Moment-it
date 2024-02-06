@@ -22,6 +22,7 @@ $routes->get('/profile','Profile::index');
 
 //Postingan routes 
 $routes->get('/postingan' , 'Postingan::index');
+$routes->get('/detail-postingan','Postingan::detail');
 $routes->post('/buat-postingan','Postingan::buat');
 
 //Upload image

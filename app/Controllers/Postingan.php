@@ -29,6 +29,11 @@ class Postingan extends BaseController
         return view('postingan/index') ;
     }
 
+    public function detail()
+    {
+        return view('postingan/detail') ;
+    }
+
     public function buat()
     {
         $request = $this->request->getPost();

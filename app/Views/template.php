@@ -9,6 +9,7 @@
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.0/dist/css/splide.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>Document</title>
@@ -21,7 +22,7 @@
         <div class="w-screen flex flex-wrap items-center justify-center mt-2">
             <div class="flex flex-wrap items-center justify-center">
                 <a href="https://flowbite.com/" class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
-                    <img src="/img/Logo.png" class="h-11 rounded-full" alt="Moment It logo" />
+                    <img src="/img/Buat Logo (5).png" class="h-11 rounded-full" alt="Moment It logo" />
                 </a>
                 <a href=""
                     class="border pt-2.5 pb-2.5 pr-6 pl-6 bg-white hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block 2xl:mr-13"

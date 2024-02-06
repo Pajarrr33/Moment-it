@@ -101,4 +101,12 @@
     .xl\:w-670{
         width: 670px;
     }
+
+    .xl\:w-550{
+        width: 550px;
+    }
+    
+    .xl\:h-670{
+        height: 670px;
+    }
 }
