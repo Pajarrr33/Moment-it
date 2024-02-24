@@ -6,6 +6,11 @@ use App\Controllers\BaseController;
 use App\Models\GambarModels;
 use App\Models\PostinganModels;
 use App\Models\TmpImg;
+use App\Models\UserModel;
+use App\Models\LikeModels;
+use App\Models\KomentarModels;
+use App\Models\AlbumModels;
+use App\Models\AlbumItemsModels;
 use CodeIgniter\HTTP\ResponseInterface;
 use Faker\Extension\Helper;
 
@@ -18,55 +23,127 @@ class Postingan extends BaseController
 
         $this->TmpImgModels = new TmpImg();
 
+        $this->UserModels = new UserModel();
+
+        $this->LikeModels = new LikeModels();
+
+        $this->CommentModels = new KomentarModels();
+
+        $this->AlbumModels = new AlbumModels();
+
+        $this->AlbumItemsModels = new AlbumItemsModels();
+
         $this->session = \Config\Services::session();
 
         $this->validation = \Config\Services::validation();
 
         $this->filesystem = new Helper("filesystem");
     }
+
     public function index()
     {
-        return view('postingan/index') ;
+        $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
+        return view('postingan/index',$data) ;
     }
 
-    public function detail()
+    public function edit($id_postingan)
     {
-        return view('postingan/detail') ;
+        $data['postingan'] = $this->PostinganModels->where('id_postingan',$id_postingan)->first();
+        $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
+        $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
+        // var_dump($data['gambar']);
+        // die ;
+        return view('postingan/edit',$data) ;
     }
 
-    public function buat()
+    public function detail($id_postingan)
+    {
+        $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
+        
+        $data['postingan'] = $this->PostinganModels->where('id_postingan',$id_postingan)->first();
+        $data['poster'] = $this->UserModels->where('id_user',$data['postingan']['id_user'])->first();
+        $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
+        $data['like'] = $this->LikeModels->where('id_user',$this->session->get('id_user'))->where('id_postingan',$id_postingan)->first();
+        
+        $data['comment'] = $this->CommentModels->where('id_postingan',$id_postingan)->findAll();
+        $data['user_comment'] = $this->UserModels->findAll();
+
+        $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
+        $data['album_items'] = $this->AlbumItemsModels->where('id_postingan',$id_postingan)->first();
+
+        return view('postingan/detail',$data) ;
+    }
+
+    public function create()
     {
         $request = $this->request->getPost();
 
-        $validationRules = [
-            'judul' => 'required|alpha_numeric_space|max_length[256]',
-            'deskripsi' => 'required|alpha_numeric_space',
-            'tag' => 'required',
-        ];
-
-        $validationMessages = [
-            'judul' => [
-                'required' => 'Judul wajib diisi',
-                'alpha_numeric_space' => 'Judul hanya boleh diisi huruf dan angka',
-                'max_length[256]' => 'Maksimal 256 Kata'
-            ],
-            'deskripsi' => [
-                'required' => 'Deskripsi wajib diisi',
-                'alpha_numeric_space' => 'Deskripsi hanya boleh diisi huruf dan angka',
-            ],
-            'tag' => [
-                'required' => 'Tag wajib diisi',
-            ]
-        ];
-
-        $this->validation->setRules($validationRules, $validationMessages);
-
-        if (!$this->validation->run($request)) {
+        if (!$this->validate('postingan',$request)) {
             $this->session->set($this->validation->getErrors());
             return redirect()->to('/postingan');
         }
 
-        $id_gambar['id_gambar'] = 0;
+        $data_postingan = [
+            "id_user" => $this->session->get('id_user'),
+            "judul" => $request['judul'],
+            "deskripsi" => $request['deskripsi'],
+            "tag" => $request['tag'],
+        ];
+
+        $this->PostinganModels->insert($data_postingan);
+        $postingan_id = $this->PostinganModels->getInsertID();
+        
+        foreach ($request['img'] as $tmp_id) {
+            $Tmp_img = $this->TmpImgModels->where("id", $tmp_id)->first();
+
+            $folder = uniqid() . '-' . date('Y-m-d');
+
+            directory_mirror(
+                FCPATH . 'upload/tmp_img/' . $Tmp_img['folder'] . "/",
+                FCPATH . 'upload/gambar_postingan/' . $folder
+            );
+
+            unlink(FCPATH . 'upload/tmp_img/' . $Tmp_img['folder'] . "/" . $Tmp_img['img']);
+            rmdir(FCPATH . 'upload/tmp_img/' . $Tmp_img['folder']);
+
+            $data = [
+                "id_postingan" => $postingan_id,
+                "folder" => $folder,
+                "img" => $Tmp_img['img']
+            ];
+
+            $this->GambarModels->insert($data);
+
+            $this->TmpImgModels->where("id", $tmp_id)->delete();
+        }
+
+        return redirect()->to('/');
+    }
+
+    public function update($id_postingan)
+    {
+        $request = $this->request->getPost();
+        $old_img = $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
+
+        if (!$this->validate('postingan',$request)) {
+            $this->session->set($this->validation->getErrors());
+            return redirect()->back();
+        }
+
+        $data_postingan = [
+            "judul" => $request['judul'],
+            "deskripsi" => $request['deskripsi'],
+            "tag" => $request['tag'],
+        ];
+
+        $this->PostinganModels->update_data($id_postingan, $data_postingan);
+
+        foreach($old_img as $oldimg) {
+            $this->GambarModels->where('id_postingan',$id_postingan)->delete();
+
+            unlink(FCPATH . 'upload/gambar_postingan/' . $oldimg['folder'] . "/" . $oldimg['img']);
+            rmdir(FCPATH .'upload/gambar_postingan/' . $oldimg['folder']);
+        }
 
         foreach ($request['img'] as $tmp_id) {
             $Tmp_img = $this->TmpImgModels->where("id", $tmp_id)->first();
@@ -82,28 +159,32 @@ class Postingan extends BaseController
             rmdir(FCPATH . 'upload/tmp_img/' . $Tmp_img['folder']);
 
             $data = [
-                "id_gambar" => $id_gambar['id_gambar'],
-                "lokasi" => 'upload/gambar_postingan/' . $folder . "/" . $Tmp_img['img']
+                "id_postingan" => $id_postingan,
+                "folder" => $folder,
+                "img" => $Tmp_img['img']
             ];
 
             $this->GambarModels->insert($data);
 
-            $id_list = $this->GambarModels->getInsertID();
-            $id_gambar = $this->GambarModels->where("id_list", $id_list)->first();
             $this->TmpImgModels->where("id", $tmp_id)->delete();
         }
 
-        $data_postingan = [
-            "id_user" => 0,
-            "judul" => $request['judul'],
-            "deskripsi" => $request['deskripsi'],
-            "tag" => $request['tag'],
-            "id_gambar" => $id_gambar['id_gambar']
-        ];
+        return redirect()->to('/detail-postingan/' . $id_postingan);
+    }
 
-        $this->PostinganModels->insert($data_postingan);
+    public function delete($id_postingan)
+    {
+        $old_img = $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
+
+        foreach($old_img as $oldimg) {
+            $this->GambarModels->where('id_postingan',$id_postingan)->delete();
+
+            unlink(FCPATH . 'upload/gambar_postingan/' . $oldimg['folder'] . "/" . $oldimg['img']);
+            rmdir(FCPATH .'upload/gambar_postingan/' . $oldimg['folder']);
+        }
+
+        $this->PostinganModels->where('id_postingan',$id_postingan)->delete();
 
         return redirect()->to('/');
     }
-
 }

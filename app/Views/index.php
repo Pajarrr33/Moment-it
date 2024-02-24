@@ -8,10 +8,11 @@
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/img/Buat Logo (5).png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <title>Moment It</title>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
                 amazing photos. Spread the joy by sharing with your friends as well! Don't miss the chance to showcase
                 your memories.</p>
                 <div class="pt-8">
-                    <a href="" class="bg-white text-black font-poppins py-4 px-16 rounded-50">Explore</a>
+                    <a href="/login" class="bg-white text-black font-poppins py-4 px-16 rounded-50">Explore</a>
                 </div>
         </div>
         <div class="invisible col-span-1  sm:visible"

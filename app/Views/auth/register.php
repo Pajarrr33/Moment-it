@@ -12,34 +12,51 @@
 </head>
 
 <body>
+    <?php $session = session() ; ?>
     <div class="w-screen h-screen flex flex-col items-center justify-center text-white"
         style="background-image: url('/img/Walpaper.png'); background-size: cover;">
         <h1 class="font-poppins text-4xl mb-5">Register</h1>
-
-        <?php $session = session() ; if($session->get('error')) : ?>
-
-        <?php var_dump($session->get('error')) ; endif ; ?>
         <form action="/valid-register" method="post">
             <div class="mt-5 justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
                 <div class="col-span-1 mx-auto md:mx-3">
-                    <input type="email" name="email" id=""
-                        class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
-                        placeholder="Email">
+                    <div class="relative">
+                        <input type="email" name="email" id=""
+                            class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
+                            placeholder="Email">
+                        <?php if(isset($session->get('error')['email'])) : ?>
+                            <p class="text-red-600 absolute bottom-5 left-4"><?= $session->get('error')['email'] ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div class="col-span-1 mx-auto md:mx-3">
-                    <input type="text" name="username" id=""
-                        class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
-                        placeholder="Username">
+                    <div class="relative">
+                        <input type="text" name="username" id=""
+                            class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
+                            placeholder="Username">
+                        <?php if(isset($session->get('error')['username'])) : ?>
+                            <p class="text-red-600 absolute bottom-5 left-4"><?= $session->get('error')['username'] ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div class="col-span-1 mx-auto md:mx-3">
-                    <input type="password" name="password" id=""
-                        class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
-                        placeholder="Password">
+                    <div class="relative">
+                        <input type="password" name="password" id=""
+                            class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
+                            placeholder="Password">
+                        <?php if(isset($session->get('error')['password'])) : ?>
+                            <p class="text-red-600 absolute bottom-5 left-4"><?= $session->get('error')['password'] ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div class="col-span-1 mx-auto md:mx-3">
-                    <input type="password" name="password2" id=""
-                        class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60  rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
-                        placeholder="Repeat password">
+                    <div class="relative">
+                        <input type="password" name="password2" id=""
+                            class="font-poppins border border-black text-black p-3 w-48 h-12 mb-5 sm:mb-10 sm:w-60  rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-md md:w-72 md:h-14 rounded-50 md:text-lg lg:w-96 lg:h-16 rounded-50 lg:text-xl"
+                            placeholder="Repeat password">
+                        <?php if(isset($session->get('error')['password2'])) : ?>
+                            <p class="text-red-600 absolute bottom-5 left-4"><?= $session->get('error')['password2'] ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col items-center justify-center">

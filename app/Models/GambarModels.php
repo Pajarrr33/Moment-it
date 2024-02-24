@@ -12,7 +12,7 @@ class GambarModels extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ["id_list","id_postingan","lokasi","id_gambar"];
+    protected $allowedFields    = ["id_list","id_postingan","folder","img"];
 
     // Dates
     protected $useTimestamps = true;
@@ -37,4 +37,6 @@ class GambarModels extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    
 }

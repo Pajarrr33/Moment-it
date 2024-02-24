@@ -27,8 +27,9 @@
                     <div class="mt-1">
                         <h1 class="text-black font-poppins">Tags</h1>
                         <select name="tag" id="" class="font-poppins text-black border border-black p-2 w-full h-10 rounded-50">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
+                            <option value="Animal">Animal</option>
+                            <option value="Panorama">Panorama</option>
+                            <option value="Family">Family</option>
                         </select>
                     </div>
                     <div class="mt-2 text-right">

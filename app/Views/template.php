@@ -10,9 +10,11 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.0/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="/img/Buat Logo (5).png" class="h-10 rounded-full">
+    <title>Moment It | Home</title>
 </head>
 
 <body class="bg-black ">
@@ -22,18 +24,18 @@
         <div class="w-screen flex flex-wrap items-center justify-center mt-2">
             <div class="flex flex-wrap items-center justify-center">
                 <a href="https://flowbite.com/" class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
-                    <img src="/img/Buat Logo (5).png" class="h-11 rounded-full" alt="Moment It logo" />
+                    <img src="/img/Buat Logo (5).png" class="h-10 rounded-full" alt="Moment It logo" />
                 </a>
-                <a href=""
+                <a href="/"
                     class="border pt-2.5 pb-2.5 pr-6 pl-6 bg-white hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block 2xl:mr-13"
                     style="border-radius: 45px;">
                     Home
                 </a>
-                <a href=""
+                <a href="/postingan"
                     class="text-white pt-2.5 pb-2.5 pr-6 pl-6 hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block">
                     Post
                 </a>
-                <form action="#" class="flex mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
+                <form action="/" method="post" class="flex mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
                     <div
                         class="flex items-center justify-start bg-white pt-2.5 pb-2.5 w-726 sm:w-726 md:w-726 lg:w-726 xl:w-726 rounded-50">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -41,14 +43,11 @@
                             <path
                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                         </svg>
-                        <input type="text" class="flex w-670 sm:w-670 md:w-670 lg:w-670 xl:w-670" placeholder="Search">
+                        <input type="text" name="search" class="flex w-670 sm:w-670 md:w-670 lg:w-670 xl:w-670" placeholder="Search">
                     </div>
                 </form>
-                <a href="" class="text-white hidden mr-3 sm:mr-3 md:mr-3 lg:mr-3 xl:mr-5 md:block lg:block xl:block">
-                    Logout
-                </a>
-                <a href="https://flowbite.com/" class="flex items-center">
-                    <img src="/img/Buat logo (2).png" class="h-11 rounded-full" alt="Flowbite Logo" />
+                <a href="/profile/<?= $user['username'] ?>" class="flex items-center">
+                    <img src="/upload/profile/<?= $user['folder'] ?>/<?= $user['profile_picture'] ?>" class="h-10 w-10 object-cover rounded-full" alt="Moment it Logo" />
                 </a>
             </div>
         </div>

@@ -37,4 +37,17 @@ class PostinganModels extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function update_data($id, $data)
+    {
+        $query = $this->db->table($this->table)->where('id_postingan', $id)->update($data);
+        return $query ;
+    }
+
+    public function search($judul)
+    {
+        $builder = $this->table('postingan');
+        $builder->like('judul',$judul);
+        return $builder;
+    }
 }

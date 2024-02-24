@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user','username','email','password','salt','nama_lengkap','alamat','is_active'];
+    protected $allowedFields    = ['id_user','username','email','password','salt','bio','nama_lengkap','folder','profile_picture','alamat','active_code','is_active'];
 
     // Dates
     protected $useTimestamps = true;
@@ -37,4 +37,10 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function update_data($id, $data)
+    {
+        $query = $this->db->table($this->table)->where('id_user', $id)->update($data);
+        return $query ;
+    }
 }

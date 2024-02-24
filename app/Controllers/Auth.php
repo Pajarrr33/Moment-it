@@ -33,26 +33,7 @@ class Auth extends BaseController
     {
          $data = $this->request->getPost();
 
-         $validationRules = [
-            'email' => 'required|valid_email',
-            'password' => 'required|min_length[8]|alpha_numeric_punct',
-        ];
-
-        $validationMessages = [
-            'email'=> [
-                'required' => 'Email wajib diisi',
-                'valid_email' => 'Email tidak valid'
-            ],
-            'password' => [
-                'required' => 'Password wajib diisi',
-                'min_length' => 'Password harus terdiri dari 8 kata',
-                'alpha_numeric_punct' => 'Password hanya boleh mengandung angka, huruf, dan karakter yang valid'
-            ],
-        ];
- 
-        $this->validation->setRules($validationRules, $validationMessages);
-
-        if (!$this->validation->run($data)) {
+        if (!$this->validate('login',$data)) {
             $this->session->setFlashdata('error',$this->validation->getErrors());
             return redirect()->to('/login');
         }
@@ -62,6 +43,12 @@ class Auth extends BaseController
         if(!$user)
         {
             $this->session->setFlashdata('error','Email belum terdaftar');
+            return redirect()->to('/login');
+        }
+
+        if($user['active_code'] != "" && $user['is_active'] != '1')
+        {
+            $this->session->setFlashdata('error','Email belum diverifikasi,silahkan verifikasi terlebih dahulu');
             return redirect()->to('/login');
         }
 
@@ -85,37 +72,8 @@ class Auth extends BaseController
         //tangkap data dari form 
         $data = $this->request->getPost();
 
-        $validationRules = [
-            'username' => 'required|alpha_numeric_space|is_unique[user.username]',
-            'email' => 'required|valid_email',
-            'password' => 'required|min_length[8]|alpha_numeric_punct',
-            'password2' => 'required|matches[password]'
-        ];
-
-        $validationMessages = [
-            'username' => [
-                'required' => 'Username wajib diisi',
-                'alpha_numeric_space' => 'Username hanya boleh mengandung huruf dan angka',
-                'is_unique' => 'Username sudah dipakai'
-                ],
-            'email'=> [
-                'required' => 'Email wajib diisi',
-                'valid_email' => 'Email tidak valid'
-            ],
-            'password' => [
-                'required' => 'Password wajib diisi',
-                'min_length' => 'Password harus terdiri dari 8 kata',
-                'alpha_numeric_punct' => 'Password hanya boleh mengandung angka, huruf, dan karakter yang valid'
-            ],
-            'password2' => [
-                'required' => 'Repeat password wajib diisi',
-                'matches' => 'Repeat password tidak cocok'
-            ]
-        ];
-
-        $this->validation->setRules($validationRules, $validationMessages);
-
-        if (!$this->validation->run($data)) {
+        //cek apakah data memenuhi persyaratan
+        if (!$this->validate('register', $data)) {
             $this->session->setFlashdata('error',$this->validation->getErrors());
             return redirect()->to('/register');
         }
@@ -125,18 +83,67 @@ class Auth extends BaseController
         //hash password digabung dengan salt
         $password = password_hash($data['password'] . $salt,PASSWORD_BCRYPT);
 
+        //buat folder untuk Foto profile
+        $folder = uniqid() . '-' . date('Y-m-d');
+
+        $active_code = password_hash(uniqid(),PASSWORD_BCRYPT);
+
+        //duplikat image default profile ke folder pribadi user
+        directory_mirror(
+            FCPATH . 'img/default_profile/',
+            FCPATH . 'upload/profile/' . $folder
+        );
+
         //masukan data ke database
         $this->Usermodel->save([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => $password,
             'salt' => $salt,
+            'folder' => $folder,
+            'profile_picture' => 'pfp.png',
+            'active_code' => $active_code,
             'is_active' => '0',
         ]);
+
+        $data = [
+            'email' => $data['email'],
+            'active_code' => $active_code
+        ];
+
+        $this->email->setTo($data['email']);
+        $this->email->setFrom('moment7833@gmail.com','Moment it');
+        $this->email->setSubject('Email Validation');
+        $this->email->setMessage(view('auth/email_verification',$data));
+
+        $this->email->send() ;
 
         //arahkan ke halaman login
         session()->setFlashdata('login', 'You have successfully registered, please check your email to activate your account');
         return redirect()->to('/login');
+    }
+
+    public function verification($active_code)
+    {
+        $user = $this->Usermodel->where('active_code',$active_code)->first();
+
+        if(!$user)
+        {
+            return redirect()->to('/');
+        }
+
+        $data = [
+            'active_code' => null,
+            'is_active'=> '1'
+        ];
+        $this->Usermodel->update_data($user['id_user'],$data);
+        session()->setFlashdata('login', 'Your account have successfully verified, please login to look your account');
+        return redirect()->to('/login');
+    }
+
+    public function email_validation()
+    {
+        return view('auth/email_verification.php');
     }
 
     public function logout()
