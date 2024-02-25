@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Moment it | Login</title>
+    <link rel="icon" type="image/x-icon" href="/img/logo (2).png">
+    <title>Moment-it | Login</title>
 </head>
 
 <body>
@@ -17,18 +18,22 @@
         <h1 class="font-poppins text-4xl mb-5">Login</h1>
 
         <form action="/valid-login" method="post">
-            <?php $session = session() ; if($session->get('error')) : ?>
-
-            <?php var_dump($session->get('error')) ; endif ; ?>
-            <div class="mt-5">
+            <div class="relative">
+            <?php $session = session() ; ?>
                 <input type="email" name="email" id=""
                     class="font-poppins border border-black text-black p-3 sm:w-72 w-72 h-12 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-lg md:w-96 md:h-16 rounded-50 text-xl"
                     placeholder="Email">
+                    <?php if(isset($session->get('error')['email'])) : ?>
+                        <p class="text-red-600 absolute top-16 left-8"><?= $session->get('error')['email'] ?></p>
+                    <?php endif; ?>
             </div>
-            <div class="mt-10">
+            <div class="mt-10 relative">
                 <input type="password" name="password" id=""
                     class="font-poppins border border-black text-black p-3 sm:w-72 w-72 h-12 rounded-50 text-md sm:h-12 sm:rounded-50 sm:text-lg md:w-96 md:h-16 rounded-50 text-xl"
                     placeholder="Password">
+                    <?php if(isset($session->get('error')['password'])) : ?>
+                        <p class="text-red-600 absolute top-16 left-8"><?= $session->get('error')['password'] ?></p>
+                    <?php endif; ?>
             </div>
             <div class="mt-10">
                 <button type="submit"

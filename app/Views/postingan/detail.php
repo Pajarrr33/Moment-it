@@ -318,28 +318,6 @@ if (images.length > 1) {
 }
 
 
-
-
-// Add event listeners to show/hide arrows
-document.addEventListener('splide.slide.moved', function(event) {
-    const splide = event.detail.splide;
-    const index = event.detail.index;
-    const track = splide.Components.Track.get();
-    const slides = track.querySelectorAll('.splide__slide');
-
-    console.log(slides);
-
-    const prevArrow = splide.Components.Arrows.get().previous;
-    const nextArrow = splide.Components.Arrows.get().next;
-
-    // Hide previous arrow for first slide
-    prevArrow.classList.toggle('hidden', index === 0);
-
-    // Hide next arrow for last slide
-    nextArrow.classList.toggle('hidden', index === slides.length - 1);
-});
-
-
 <?php foreach($comment as $c) : ?>
 $('#komentar-<?= $c['id_komentar'] ?>').on("click", function() {
     if ($('#komentar-dropdown-<?= $c['id_komentar'] ?>').hasClass('open')) {

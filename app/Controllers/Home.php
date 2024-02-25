@@ -29,8 +29,10 @@ class Home extends BaseController
 
         if($request == 'get')
         {
-            $data['postingan'] = $this->PostinganModels->paginate(15 ,'postingan');
-            $data['pager'] = $this->PostinganModels->pager;
+            $data['title'] = "Home";
+            $start =  0;
+            $limit = 15;
+            $data['postingan'] = $this->PostinganModels->findAll($limit, $start);
             $data['gambar'] = $this->GambarModels->findAll();
             $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
             
@@ -49,9 +51,11 @@ class Home extends BaseController
                 $postingan = $this->PostinganModels;
             }
 
+            $data['title'] = "Pencarian";
             $data['dicari'] = $post['search'];
-            $data['postingan'] = $postingan->paginate(10,'postingan');
-            $data['pager'] = $this->PostinganModels->pager;
+            $start =  0;
+            $limit = 15;
+            $data['postingan'] = $postingan->findAll($limit, $start);
             $data['gambar'] = $this->GambarModels->findAll();
             $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
             
@@ -59,17 +63,35 @@ class Home extends BaseController
         }
     }
 
-    public function FetchPost()
+    public function getmore()
     {
-        $page = $this->request->getVar('page') ?? 1 ;
-        $data['postingan'] = $this->PostinganModels->paginate(10,'postingan',$page);
-        $data['pager'] = $this->PostinganModels->pager;
+        $request = $this->request->getPost();
+        $limit = 15;
+        $start =  $request['start'] * $limit;
+        $data['postingan'] = $this->PostinganModels->findAll($limit, $start);
         $data['gambar'] = $this->GambarModels->findAll();
-        $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
-        $view = view('postingan/pencarian',$data);
 
-        return $this->response->setJSON([
-            'posts' => $view
-        ]);
+        return view('postingan/more-postingan',$data) ;
+    }
+
+    public function getmoresearch()
+    {
+        $request = $this->request->getPost();
+
+        if($request['search'])
+        {
+            $postingan = $this->PostinganModels->search($request['search']);
+        }
+        else
+        {
+            $postingan = $this->PostinganModels;
+        }
+
+        $limit = 15;
+        $start =  $request['start'] * $limit;
+        $data['postingan'] = $postingan->findAll($limit, $start);
+        $data['gambar'] = $this->GambarModels->findAll();
+
+        return view('postingan/more-postingan',$data) ;
     }
 }

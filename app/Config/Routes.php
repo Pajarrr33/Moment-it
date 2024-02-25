@@ -6,7 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->match(['get', 'post'],'/','Home::index');
-$routes->get('/fetch-post','Home::FetchPost');
+$routes->post('/get-more-postingan','Home::getmore');
+$routes->post('/get-more-search','Home::getmoresearch');
 
 //Login and register routes
 $routes->get('/login','Auth::login');

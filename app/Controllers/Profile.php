@@ -39,6 +39,7 @@ class Profile extends BaseController
         $data['postingan'] = $this->PostinganModels->findAll();
         $data['gambar'] = $this->GambarModels->findAll();
         $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
+        $data['title'] = $data['profile']['username'] . " Profile";
 
         return view('profile/profile',$data);
     }
@@ -47,6 +48,7 @@ class Profile extends BaseController
     {
         $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
         $data['profile'] = $this->UserModels->where('id_user',$id_user)->first();
+        $data['title'] = "Edit" . $data['profile']['username'] . " Profile";
         return view('profile/edit',$data);
     }
 
@@ -131,12 +133,15 @@ class Profile extends BaseController
 
         $user = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
 
+        $title = $album['album_name'] . " Album";
+
         $data = [
             'album' => $album,
             'album_items' => $album_items,
             'postingan' => $postingan,
             'gambar' => $gambar,
-            'user' => $user
+            'user' => $user,
+            'title' => $title
         ];
 
         return view('profile/album',$data);

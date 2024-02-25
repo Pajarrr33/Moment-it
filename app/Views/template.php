@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" type="image/x-icon" href="/img/Buat Logo (5).png" class="h-10 rounded-full">
-    <title>Moment It | Home</title>
+    <link rel="icon" type="image/x-icon" href="/img/logo (2).png">
+    <title>Moment-It | <?= $title ?></title>
 </head>
 
 <body class="bg-black ">
@@ -23,9 +23,9 @@
     <nav class="fixed top-0 z-50 pb-5 w-full bg-black" id="navbar">
         <div class="w-screen flex flex-wrap items-center justify-center mt-2">
             <div class="flex flex-wrap items-center justify-center">
-                <a href="https://flowbite.com/" class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
+                <div class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
                     <img src="/img/Buat Logo (5).png" class="h-10 rounded-full" alt="Moment It logo" />
-                </a>
+                </div>
                 <a href="/"
                     class="border pt-2.5 pb-2.5 pr-6 pl-6 bg-white hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block 2xl:mr-13"
                     style="border-radius: 45px;">

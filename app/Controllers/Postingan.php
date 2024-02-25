@@ -42,12 +42,14 @@ class Postingan extends BaseController
 
     public function index()
     {
+        $data['title'] = "Post";
         $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
         return view('postingan/index',$data) ;
     }
 
     public function edit($id_postingan)
     {
+        $data['title'] = "Edit Post";
         $data['postingan'] = $this->PostinganModels->where('id_postingan',$id_postingan)->first();
         $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
         $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
@@ -58,6 +60,8 @@ class Postingan extends BaseController
 
     public function detail($id_postingan)
     {
+        $data['title'] = "Detail Post";
+
         $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
         
         $data['postingan'] = $this->PostinganModels->where('id_postingan',$id_postingan)->first();

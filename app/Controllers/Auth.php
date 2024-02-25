@@ -42,19 +42,25 @@ class Auth extends BaseController
 
         if(!$user)
         {
-            $this->session->setFlashdata('error','Email belum terdaftar');
+            $this->session->setFlashdata('error',[
+                'email' => 'Email belum terdaftar'
+            ]);
             return redirect()->to('/login');
         }
 
         if($user['active_code'] != "" && $user['is_active'] != '1')
         {
-            $this->session->setFlashdata('error','Email belum diverifikasi,silahkan verifikasi terlebih dahulu');
+            $this->session->setFlashdata('error',[
+                'email' => 'Email belum diverifikasi,silahkan verifikasi terlebih dahulu'
+            ]);
             return redirect()->to('/login');
         }
 
         if(!password_verify($data['password'] . $user['salt'],$user['password']))
         {
-            $this->session->setFlashdata('error','Password salah belum terdaftar');
+            $this->session->setFlashdata('error',[
+                'password' => 'Password salah'
+            ]);
             return redirect()->to('/login');
         }
 

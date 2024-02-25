@@ -8,11 +8,11 @@
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="/img/Buat Logo (5).png">
+    <link rel="icon" type="image/x-icon" href="/img/logo (2).png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Moment It</title>
+    <title>Moment-It</title>
 </head>
 
 <body>
