@@ -63,6 +63,28 @@
     crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script>
+
+    $(document).ready(function(){
+        var username = <?= json_encode($profile['username']); ?>;
+        var start = 1;
+        $(window).scroll(function(){
+            var posisi = $(window).scrollTop();
+            var bawah = $(document).height() - $(window).height();
+            // console.log(bawah);
+            if(posisi >= bawah) {
+                infinitesrollprocess = $.ajax({
+                    url: "<?= site_url('/get-more-profile') ?>",
+                    type: "POST",
+                    data: {start: start,username: username}
+                });
+                infinitesrollprocess.done(function(data){
+                    $("#sudah-dibuat").append(data);
+                    start += 1;
+                });     
+            }
+        });
+    })
+
     function confirmDeleteProfile(deleteUrl) {
         swal({
             title: "Are you sure?",

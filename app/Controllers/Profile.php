@@ -36,12 +36,28 @@ class Profile extends BaseController
     {
         $data['user'] = $this->UserModels->where('id_user',$this->session->get('id_user'))->first();
         $data['profile'] = $this->UserModels->where('username',$username)->first();
-        $data['postingan'] = $this->PostinganModels->findAll();
+
+        $start =  0;
+        $limit = 15;
+        $data['postingan'] = $this->PostinganModels->findAll($limit, $start);;
         $data['gambar'] = $this->GambarModels->findAll();
         $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
         $data['title'] = $data['profile']['username'] . " Profile";
 
         return view('profile/profile',$data);
+    }
+
+    public function moreprofile()
+    {
+        $request = $this->request->getPost();
+        $data['profile'] = $this->UserModels->where('username',$request['username'])->first();
+
+        $limit = 15;
+        $start =  $request['start'] * $limit;
+        $data['postingan'] = $this->PostinganModels->findAll($limit, $start);
+        $data['gambar'] = $this->GambarModels->findAll();
+
+        return view('/profile/more-profile',$data);
     }
 
     public function edit($id_user)

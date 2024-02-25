@@ -26,6 +26,7 @@ $routes->get('/edit-profile/(:any)','Profile::edit/$1');
 $routes->post('/update-profile/(:any)','Profile::update/$1');
 $routes->get('/delete-profile/(:any)','Profile::delete/$1');
 $routes->get('/album/(:any)/(:any)','Profile::user_album/$1/$2');
+$routes->post('/get-more-profile','Profile::moreprofile');
 
 
 //Postingan routes 
