@@ -92,6 +92,12 @@ class Validation extends BaseConfig
     ];
     
     public $postingan = [
+        'img' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Gambar Wajib Ada'
+            ]
+        ],
         'judul' => [
             'rules' => 'required|alpha_numeric_space|max_length[256]',
             'errors' => [
@@ -101,10 +107,9 @@ class Validation extends BaseConfig
             ]
         ],
         'deskripsi' => [
-            'rules' => 'required|alpha_numeric_space',
+            'rules' => 'required',
             'errors' => [
                 'required' => 'Deskripsi wajib diisi',
-                'alpha_numeric_space' => 'Deskripsi hanya boleh diisi huruf dan angka',
             ]
         ],
         'tag' => [

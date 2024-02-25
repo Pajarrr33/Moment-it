@@ -83,7 +83,7 @@ class Postingan extends BaseController
         $request = $this->request->getPost();
 
         if (!$this->validate('postingan',$request)) {
-            $this->session->set($this->validation->getErrors());
+            $this->session->setFlashdata('error',$this->validation->getErrors());
             return redirect()->to('/postingan');
         }
 
@@ -130,7 +130,7 @@ class Postingan extends BaseController
         $old_img = $data['gambar'] = $this->GambarModels->where('id_postingan',$id_postingan)->findAll();
 
         if (!$this->validate('postingan',$request)) {
-            $this->session->set($this->validation->getErrors());
+            $this->session->setFlashdata('error',$this->validation->getErrors());
             return redirect()->back();
         }
 
