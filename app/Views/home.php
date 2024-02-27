@@ -21,6 +21,14 @@
     </div>
     <?php endforeach ?>
 </div>
+<div class="fixed p-6 bottom-6 right-0 text-white md:bottom-0">
+    <button class="p-2 rounded-full bg-white text-black font-poppins" id="scroll-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
+        </svg>
+    </button>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
@@ -41,6 +49,9 @@
                     start += 1;
                 });     
             }
+        });
+        $("#scroll-to-top").click(function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
         });
     })
 </script>
