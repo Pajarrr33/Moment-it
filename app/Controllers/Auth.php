@@ -92,7 +92,7 @@ class Auth extends BaseController
         //buat folder untuk Foto profile
         $folder = uniqid() . '-' . date('Y-m-d');
 
-        $active_code = password_hash(uniqid(),PASSWORD_BCRYPT);
+        $active_code = md5(uniqid());
 
         //duplikat image default profile ke folder pribadi user
         directory_mirror(
