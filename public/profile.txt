@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.0.0/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/img/logo (2).png">
+    <title>Moment-It | pajar Profile</title>
+</head>
+
+<body class="bg-black ">
+
+
+    <nav class="fixed top-0 z-50 pb-5 w-full bg-black" id="navbar">
+        <div class="w-screen flex flex-wrap items-center justify-center mt-2">
+            <div class="flex flex-wrap items-center justify-center">
+                 <a href="/">
+                    <div class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
+                        <img src="/img/Buat Logo (5).png" class="h-10 rounded-full" alt="Moment It logo" />
+                    </div>
+                </a>
+                <a href="/"
+                    class="border pt-2.5 pb-2.5 pr-6 pl-6 bg-white hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block 2xl:mr-13"
+                    style="border-radius: 45px;">
+                    Home
+                </a>
+                <a href="/postingan"
+                    class="text-white pt-2.5 pb-2.5 pr-6 pl-6 hidden sm:mr-3 md:mr-3 md:block lg:mr-3 lg:block xl:mr-5 xl:block">
+                    Post
+                </a>
+                <form action="/" method="post" class="flex mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
+                    <div
+                        class="flex items-center justify-start bg-white pt-2.5 pb-2.5 w-726 sm:w-726 md:w-726 lg:w-726 xl:w-726 rounded-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                            class="ml-3 mr-3 flex bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                        <input type="text" name="search" class="flex w-670 sm:w-670 md:w-670 lg:w-670 xl:w-670" placeholder="Search">
+                    </div>
+                </form>
+                <a href="/profile/pajar" class="flex items-center">
+                    <img src="/upload/profile/65c74596f26a7-2024-02-10/img-65c7459050d662.41436934.jpg" class="h-10 w-10 object-cover rounded-full" alt="Moment it Logo" />
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-black text-white">
+    <div class="pt-20 flex justify-around w-full">
+        <div class="flex justify-center items-start"></div>
+        <div class="flex justify-center items-start">
+            <img src="/upload/profile/65c74596f26a7-2024-02-10/img-65c7459050d662.41436934.jpg"
+                class="h-20 w-20 rounded-full border border-white object-cover" alt="Flowbite Logo" />
+        </div>
+        <div class="flex justify-end">
+            <div class="relative">
+                <button type="button" id="dropdown-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </button>
+                <div id="dropdown-menu"
+                    class="absolute right-0 mt-3 w-36 rounded-md bg-white shadow-lg z-10 transition-all duration-300 ease-in-out transform opacity-0 scale-0">
+                    <div class="py-1">
+                        <!-- Dropdown Item -->
+                        <a href="/logout" class="text-black font-poppins block px-4 py-2 hover:bg-gray-100">Logout</a>
+                        <!-- Dropdown Item -->
+                        <a href="#" onclick="confirmDeleteProfile('/delete-profile/1')"
+                            class="text-black font-poppins block px-4 py-2 hover:bg-gray-100">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+        <p class="mt-5 font-poppins text-white text-2xl">pajar</p>
+        <p class="mt-3 font-poppins text-white text-lg">Apatuh kira kira</p>
+                <div class="pt-3 flex items-center justify-center">
+            <div class="mx-2 flex items-center justify-center">
+                <a href="/edit-profile/1"
+                    class="bg-white text-black font-poppins md:px-16 py-2 rounded-50">Edit</a>
+            </div>
+            <!-- <div class="col-span-1 mx-2 flex items-center justify-center">
+                <a href="/logout" class="bg-white text-black font-poppins md:px-16 py-2 rounded-50">Logout</a>
+            </div>
+            <div class="col-span-1 mx-2 flex items-center justify-center">
+                <a href="#" onclick="confirmDeleteProfile('/delete-profile/1')" class="bg-white text-black font-poppins md:px-16 py-2 rounded-50">Delete</a>
+            </div> -->
+        </div>
+                <div class="pt-8 grid grid-cols-2 items-center justify-center gap-5">
+            <div class="col-span-1 mx-2 flex items-center justify-center">
+                <button type="button" id="dibuat" class="text-white font-poppins underline">Dibuat</button>
+            </div>
+            <div class="col-span-1 mx-2 items-center justify-center">
+                <button type="button" id="disimpan" class="text-white font-poppins">Disimpan</button>
+            </div>
+        </div>
+    </div>
+    <div id="sudah-dibuat" class="mx-2 gap-4 columns-2 sm:columns-4 mt-10 lg:columns-5">
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/12">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d7f8e03571b-2024-02-23/img-65d7f8dd1fa451.01796100.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/13">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d7ec0d4ce7d-2024-02-23/img-65d7ec03da2c43.19250913.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/14">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d7fdebbec28-2024-02-23/img-65d7fde6128ab5.76892116.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/15">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d7fe1190eaa-2024-02-23/img-65d7fe06655b03.61771963.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/16">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d7fe96e871b-2024-02-23/img-65d7fe8888f7b8.07519766.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/17">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d80040c0c26-2024-02-23/img-65d80037e066c3.42090843.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/18">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d8009e713d3-2024-02-23/img-65d800994785b9.54977633.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/19">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d800e263779-2024-02-23/img-65d800d2beab00.71517490.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/20">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d8010e8a187-2024-02-23/img-65d801067cc623.67134310.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/21">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65d8013b5aaa1-2024-02-23/img-65d80131de7ad8.47710356.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/76">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65db3e92ae510-2024-02-25/img-65d7f8dd1fa451.01796100.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/77">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65db3e92b0260-2024-02-25/img-65d7ec03da2c43.19250913.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/78">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65db3e92b1ed4-2024-02-25/img-65d7fde6128ab5.76892116.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/79">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65db3e92b4c9c-2024-02-25/img-65d7fe06655b03.61771963.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+                <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                                <a href="/detail-postingan/80">
+                    <img class="relative object-cover brightness-95 rounded-2xl"
+                        src="/upload/gambar_postingan/65db3e92b76a8-2024-02-25/img-65d7fe8888f7b8.07519766.jpg" alt="Image">
+                </a>
+                            </div>
+        </div>
+            </div>
+    <div id="sudah-disimpan" class="mx-2 hidden gap-4 columns-2 sm:columns-4 mt-10 lg:columns-5">
+                        <div class="flex flex-col break-inside-avoid mb-3 items-center">
+            <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
+                <a href="/album/pajar/4">
+                    <div class="bg-gray-500 relative h-32 w-60 rounded-2xl">
+
+                    </div>
+                    <h1 class="text-poppin text-white">Kucing</h1>
+                </a>
+            </div>
+        </div>
+                    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+$(document).ready(function() {
+    var username = "pajar";
+    var start = 1;
+    $(window).scroll(function() {
+        var posisi = $(window).scrollTop();
+        var bawah = $(document).height() - $(window).height();
+        // console.log(bawah);
+        if (posisi >= bawah) {
+            infinitesrollprocess = $.ajax({
+                url: "http://localhost:8080/index.php/get-more-profile",
+                type: "POST",
+                data: {
+                    start: start,
+                    username: username
+                }
+            });
+            infinitesrollprocess.done(function(data) {
+                $("#sudah-dibuat").append(data);
+                start += 1;
+            });
+        }
+    });
+})
+
+function confirmDeleteProfile(deleteUrl) {
+    swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover your account!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = deleteUrl; // Redirect to delete URL if confirmed
+            }
+        });
+}
+
+$("#dibuat").on("click", function() {
+    $("#sudah-dibuat").removeClass("hidden");
+    $("#sudah-disimpan").addClass("hidden");
+    $("#disimpan").removeClass("underline")
+    $("#dibuat").addClass("underline");
+})
+
+$("#disimpan").on("click", function() {
+    $("#sudah-dibuat").addClass("hidden");
+    $("#sudah-disimpan").removeClass("hidden");
+    $("#dibuat").removeClass("underline");
+    $("#disimpan").addClass("underline")
+})
+
+$('#dropdown-toggle').on("click", function() {
+    if ($('#dropdown-menu').hasClass('open')) {
+        $('#dropdown-menu').removeClass('open');
+        $('#dropdown-menu').removeClass('opacity-100 scacle-100');
+        $('#dropdown-menu').addClass('opacity-0 scale-0');
+    } else {
+        $('#dropdown-menu').addClass('open');
+        $('#dropdown-menu').removeClass('opacity-0 scale-0');
+        $('#dropdown-menu').addClass('opacity-100 scacle-100');
+    }
+})
+</script>
+
+    <nav class="fixed bottom-0 w-full pb-2 pt-2 bg-black block sm:block md:hidden lg:hidden xl:hidden">
+        <div class="flex flex-wrap items-center justify-center text-white">
+            <a href="" class="flex flex-col items-center text-white mx-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                </svg>
+            </a>
+            <a href="" class="flex flex-col items-center text-white mx-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                    <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                </svg>
+            </a>
+        </div>
+    </nav>
+</body>
+
+</html>

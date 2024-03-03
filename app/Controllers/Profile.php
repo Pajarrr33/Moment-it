@@ -39,9 +39,10 @@ class Profile extends BaseController
 
         $start =  0;
         $limit = 15;
-        $data['postingan'] = $this->PostinganModels->findAll($limit, $start);;
+        $data['postingan'] = $this->PostinganModels->where('id_user',$data['profile']['id_user'])->findAll($limit, $start);
         $data['gambar'] = $this->GambarModels->findAll();
         $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
+        $data['album_items'] = $this->AlbumItemsModels->findAll();
         $data['title'] = $data['profile']['username'] . " Profile";
 
         return view('profile/profile',$data);
@@ -54,7 +55,7 @@ class Profile extends BaseController
 
         $limit = 15;
         $start =  $request['start'] * $limit;
-        $data['postingan'] = $this->PostinganModels->findAll($limit, $start);
+        $data['postingan'] = $data['postingan'] = $this->PostinganModels->where('id_user',$data['profile']['id_user'])->findAll($limit, $start);
         $data['gambar'] = $this->GambarModels->findAll();
 
         return view('/profile/more-profile',$data);

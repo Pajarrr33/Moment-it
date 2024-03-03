@@ -5,7 +5,6 @@
         <a href="/detail-postingan/<?= $p['id_postingan'] ?>">
             <img class="relative object-cover brightness-95 rounded-2xl"
                 src="/upload/gambar_postingan/<?= $g['folder'] ?>/<?= $g['img'] ?>" alt="Image">
-            <h1 class="font-poppin text-white"><?= $p['judul'] ?></h1>
         </a>
         <?php break; endif; endforeach ?>
     </div>
