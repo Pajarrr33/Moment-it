@@ -55,7 +55,7 @@ class Profile extends BaseController
 
         $limit = 15;
         $start =  $request['start'] * $limit;
-        $data['postingan'] = $data['postingan'] = $this->PostinganModels->where('id_user',$data['profile']['id_user'])->findAll($limit, $start);
+        $data['postingan'] = $this->PostinganModels->where('id_user',$data['profile']['id_user'])->findAll($limit, $start);
         $data['gambar'] = $this->GambarModels->findAll();
 
         return view('/profile/more-profile',$data);

@@ -86,8 +86,7 @@
                                     <?php foreach($album as $a) : ?>
                                     <a href="/add-album-items/<?= $postingan['id_postingan'] ?>/<?= $a['id_album'] ?>"
                                         class="flex items-start w-96 mb-2">
-                                        <img src="/upload/album_thumnail/<?= $a['folder'] ?>/<?= $a['thumnail'] ?>"
-                                            class="h-12 w-12 mt-2 object-cover" alt="">
+                                        <div class="w-12 h-12 mt-1 bg-gray-400 flex items-center justify-center"><?= substr($a['album_name'], 0, 1) ?></div>
                                         <p class="text-xl ml-2 font-poppins"><?= $a['album_name'] ?></p>
                                     </a>
                                     <hr class="mb-2">
