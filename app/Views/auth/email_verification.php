@@ -16,10 +16,10 @@
 
 <body class="bg-black">
     <div class="container mx-auto my-10 px-4 md:px-0">
-        <img src="<?= base_url() ?>/img/Full Logo (1).png" alt="Moment it logo" class="w-20 md:w-32 lg:w-40 xl:w-48 h-auto mx-auto">
+        <!-- <img src="<?php //echo base_url() ?>/img/Full Logo (1).png" alt="Moment it logo" class="w-20 md:w-32 lg:w-40 xl:w-48 h-auto mx-auto"> -->
 
         <div class="flex flex-col items-center justify-center bg-white m-4 p-2  w-full md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto rounded-lg">
-            <img src="<?= base_url() ?>/img/2804530.jpg" alt="Email picture" class="w-20 sm:w-32 md:w-40 lg:w-48 xl:w-52 rounded-full mb-2 md:mb-4">
+            <!-- <img src="<?php //echo base_url() ?>/img/2804530.jpg" alt="Email picture" class="w-20 sm:w-32 md:w-40 lg:w-48 xl:w-52 rounded-full mb-2 md:mb-4"> -->
 
             <h1 class="font-poppins text-lg sm:text-xl  md:text-2xl xl:text-4xl text-center"><b>Email Verification</b></h1>
             <p class="font-poppins text-xs sm:text-sm md:text-base xl:text-xl text-center">To start using Moment it, we need to verify your email.</p>
