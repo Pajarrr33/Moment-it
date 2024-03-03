@@ -69,7 +69,30 @@ class Filters extends BaseConfig
      */
     public array $filters = [
         'auth' => ['before' => [
-            '/*',
+            '/get-more-postingan',
+            '/get-more-search',
+            '/profile/*',
+            '/edit-profile/*',
+            '/update-profile/*',
+            '/delete-profile/*',
+            '/album/*/*',
+            '/get-more-profile',
+            '/postingan',
+            '/buat-postingan',
+            '/edit-postingan/*',
+            '/update-postingan/*',
+            '/delete-postingan/*',
+            '/detail-postingan/*',
+            '/add-like/*',
+            '/remove-like/*/*',
+            '/add-comment/*',
+            '/edit-comment/*/*',
+            '/remove-comment/*/*',
+            '/add-album/*',
+            '/update-album/*',
+            '/delete-album/*',
+            '/add-album-items/*/*',
+            '/remove-album-items/*/*',
         ]]
     ];
 }
