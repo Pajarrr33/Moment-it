@@ -73,7 +73,7 @@ class Postingan extends BaseController
         $data['user_comment'] = $this->UserModels->findAll();
 
         $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
-        $data['album_items'] = $this->AlbumItemsModels->where('id_postingan',$id_postingan)->first();
+        $data['album_items'] = $this->AlbumItemsModels->findAll();
 
         return view('postingan/detail',$data) ;
     }

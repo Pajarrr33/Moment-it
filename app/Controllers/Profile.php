@@ -40,6 +40,7 @@ class Profile extends BaseController
         $start =  0;
         $limit = 15;
         $data['postingan'] = $this->PostinganModels->where('id_user',$data['profile']['id_user'])->findAll($limit, $start);
+        $data['all_postingan'] = $this->PostinganModels->findAll();
         $data['gambar'] = $this->GambarModels->findAll();
         $data['album'] = $this->AlbumModels->where('id_user',$this->session->get('id_user'))->findAll();
         $data['album_items'] = $this->AlbumItemsModels->findAll();
@@ -79,20 +80,20 @@ class Profile extends BaseController
             return redirect()->to('/edit-profile/' . $id_user);
         }
 
-        unlink(FCPATH . 'upload/profile/' . $user['folder'] . "/" . $user['profile_picture']);
-        rmdir(FCPATH .'upload/profile/' . $user['folder']);
+        unlink(FCPATH . upload/profile/' . $user['folder'] . "/" . $user['profile_picture']);
+        rmdir(FCPATH .upload/profile/' . $user['folder']);
 
         $gambar = $this->TmpImgModels->where("id", $request['img'][0])->first();
 
         $folder = uniqid() . '-' . date('Y-m-d');
 
         directory_mirror(
-            FCPATH . 'upload/tmp_img/' . $gambar['folder'] . "/",
-            FCPATH . 'upload/profile/' . $folder
+            FCPATH . upload/tmp_img/' . $gambar['folder'] . "/",
+            FCPATH . upload/profile/' . $folder
         );
 
-        unlink(FCPATH . 'upload/tmp_img/' . $gambar['folder'] . "/" . $gambar['img']);
-        rmdir(FCPATH . 'upload/tmp_img/' . $gambar['folder']);
+        unlink(FCPATH . upload/tmp_img/' . $gambar['folder'] . "/" . $gambar['img']);
+        rmdir(FCPATH . upload/tmp_img/' . $gambar['folder']);
 
         $data = [
             'username' => $request['username'],
@@ -105,8 +106,12 @@ class Profile extends BaseController
         $this->UserModels->update_data($id_user,$data);
 
         $this->TmpImgModels->where("id",$request['img'][0])->delete();
-
-        return redirect()->to('/profile/' . $user['username']);
+        
+        $this->session->set([
+            'username' => $data['username'],
+        ]);
+        
+         return redirect()->to('/profile/' . $data['username']);
     }
 
     public function delete($id_user)
@@ -120,8 +125,8 @@ class Profile extends BaseController
                 $gambar = $this->GambarModels->where('id_postingan',$p['id_postingan'])->findAll();
 
                 foreach($gambar as $g) {
-                    unlink(FCPATH . 'upload/gambar_postingan/' . $g['folder'] . "/" . $g['img']);
-                    rmdir(FCPATH . 'upload/gambar_postingan/' . $g['folder']);
+                    unlink(FCPATH . upload/gambar_postingan/' . $g['folder'] . "/" . $g['img']);
+                    rmdir(FCPATH . upload/gambar_postingan/' . $g['folder']);
 
                     $this->GambarModels->where('id_list',$g['id_list'])->delete();
                 }
@@ -130,8 +135,8 @@ class Profile extends BaseController
             $this->PostinganModels->where('id_user',$id_user)->delete();
         }
         
-        unlink(FCPATH . 'upload/profile/' . $user['folder'] . "/" . $user['profile_picture']);
-        rmdir(FCPATH . 'upload/profile/' . $user['folder']);
+        unlink(FCPATH . upload/profile/' . $user['folder'] . "/" . $user['profile_picture']);
+        rmdir(FCPATH . upload/profile/' . $user['folder']);
 
         $this->UserModels->where('id_user',$id_user)->delete();
 

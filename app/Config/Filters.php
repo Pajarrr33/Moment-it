@@ -70,6 +70,8 @@ class Filters extends BaseConfig
     public array $filters = [
         'auth' => ['before' => [
             '/get-more-postingan',
+            '/login',
+            '/register',
             '/get-more-search',
             '/profile/*',
             '/edit-profile/*',

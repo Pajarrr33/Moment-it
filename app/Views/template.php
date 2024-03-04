@@ -23,9 +23,9 @@
     <nav class="fixed top-0 z-50 pb-5 w-full bg-black" id="navbar">
         <div class="w-screen flex flex-wrap items-center justify-center mt-2">
             <div class="flex flex-wrap items-center justify-center">
-                 <a href="/">
+                <a href="/">
                     <div class="flex items-center mr-1 sm:mr-1 md:mr-3 lg:mr-3 xl:mr-5">
-                        <img src="/img/Buat Logo (5).png" class="h-10 rounded-full" alt="Moment It logo" />
+                        <img src="/img/Buat logo.png" class="h-10 rounded-full" alt="Moment It logo" />
                     </div>
                 </a>
                 <a href="/"

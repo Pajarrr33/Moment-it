@@ -24,7 +24,7 @@
                     <div class="my-2 md:pt-8">
                         <div class="flex items-center justify-center md:justify-end md:pr-5">
                             <button type="button"
-                                onclick="sharePost('<?= $postingan['judul'] ?>', '<?= $postingan['deskripsi'] ?>')"
+                                onclick="sharePost('<?= $postingan['judul'] ?>','<?= $postingan['deskripsi'] ?>')"
                                 class="p-3 mx-1 rounded-full bg-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -51,26 +51,49 @@
                                 </svg>
                             </a>
                             <?php endif ; ?>
-
-                            <?php if(!$album_items) : ?>
-                            <button id="open-modal" class="p-3 mx-1 rounded-full bg-white">
+                            
+                            <?php if($album == null) : ?>
+                             <button id="open-modal" class="p-3 mx-1 rounded-full bg-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                 </svg>
                             </button>
-                            <?php else : ?>
-                            <a href="/remove-album-items/<?= $album_items['id_items'] ?>/<?= $postingan['id_postingan'] ?>"
-                                class="p-3 mx-1 rounded-full bg-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                    class="w-6 h-6">
-                                    <path fill-rule="evenodd"
-                                        d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
                             <?php endif; ?>
+
+                            <?php foreach($album as $a) : 
+                                    $hasItem = false;
+                                    foreach($album_items as $ai) {
+                                        if($ai['id_album'] == $a['id_album']) {
+                                            if($ai['id_postingan'] == $postingan['id_postingan']) {
+                                                $hasItem = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                <?php if($hasItem) : ?>
+                                    <a href="/remove-album-items/<?= $ai['id_items'] ?>/<?= $postingan['id_postingan'] ?>"
+                                        class="p-3 mx-1 rounded-full bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="w-6 h-6">
+                                            <path fill-rule="evenodd"
+                                                d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                <?php else : ?>
+                                    <button id="open-modal" class="p-3 mx-1 rounded-full bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                                        </svg>
+                                    </button>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
 
                             <!-- Modal Overlay -->
                             <div id="modal-overlay"
@@ -272,12 +295,34 @@ function sharePost(judul, deskripsi) {
             text: deskripsi,
             url: window.location.href
         }).then(() => {
-            console.log('Shared Succesfully');
+            console.log('Shared Successfully');
         }).catch((error) => {
-            console.error('Error sharing', error);
-        })
+            console.error('Error sharing:', error);
+            // Provide more specific error message based on error.name
+            switch(error.name) {
+                case 'AbortError':
+                    console.error('User aborted sharing');
+                    break;
+                case 'NotAllowedError':
+                    console.error('User did not allow sharing');
+                    break;
+                case 'NotSupportedError':
+                    console.error('Web Share API is not supported');
+                    break;
+                case 'TypeError':
+                    console.error('Invalid data passed to navigator.share');
+                    break;
+                default:
+                    console.error('Unknown error');
+            }
+        });
+    } else {
+        console.error('Web Share API is not supported');
     }
 }
+
+
+
 
 
 

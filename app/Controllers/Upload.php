@@ -25,7 +25,7 @@ class Upload extends BaseController
         $imgekstension = $img->guessExtension();
         $randomName = uniqid('img-' , true);
         $folder = uniqid() . '-' . date('Y-m-d') ;
-        $img->move(FCPATH . '/upload/tmp_img/' . $folder,$randomName . "." . $imgekstension);
+        $img->move(FCPATH . 'upload/tmp_img/' . $folder,$randomName . "." . $imgekstension);
 
         // Remove the index.html file if it exists
          if (is_file(FCPATH . 'upload/tmp_img/' . $folder . '/index.html')) {

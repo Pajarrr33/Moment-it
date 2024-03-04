@@ -1,6 +1,14 @@
 <?= $this->extend('template') ?>
 
 <?= $this->section('content') ?>
+<style>
+    .ml-6 {
+      margin-left: 1.5rem;
+    }
+    .w-60 {
+      width: 15rem;
+    }
+</style>
 <div class="bg-black text-white">
     <div class="pt-20 flex justify-around w-full">
         <div class="flex justify-center items-start"></div>
@@ -73,7 +81,7 @@
     </div>
     <div id="sudah-disimpan" class="mx-2 hidden gap-4 columns-2 sm:columns-4 mt-10 lg:columns-5">
         <?php foreach($album as $a) :  ?>
-        <?php $hasItems = false; foreach($album_items as $ai) : if($ai['id_album'] == $a['id_album']) : $hasItems = true;  foreach($postingan as $p) : if($ai['id_postingan'] == $p['id_postingan']) : foreach($gambar as $g) :  if($p['id_postingan'] == $g['id_postingan']) : ?>
+        <?php $hasItems = false; foreach($album_items as $ai) : if($ai['id_album'] == $a['id_album']) : $hasItems = true;  foreach($all_postingan as $p) : if($ai['id_postingan'] == $p['id_postingan']) : foreach($gambar as $g) :  if($p['id_postingan'] == $g['id_postingan']) : ?>
         <div class="flex flex-col break-inside-avoid mb-3 items-center">
             <div class="max-w-44 overflow-hidden lg:max-w-64 xl:max-w-80 2xl:max-w-96">
                 <a href="/album/<?= $profile['username'] ?>/<?= $a['id_album'] ?>">

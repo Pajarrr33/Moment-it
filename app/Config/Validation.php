@@ -50,10 +50,11 @@ class Validation extends BaseConfig
             ]
         ],
         'email' => [
-            'rules' => 'required|valid_email',
+            'rules' => 'required|valid_email|is_unique[user.email]',
             'errors' => [
                 'required' => 'Email wajib diisi',
-                'valid_email' => 'Email tidak valid'
+                'valid_email' => 'Email tidak valid',
+                'is_unique' => 'Email sudah dipakai',
             ]
         ],
         'password' => [

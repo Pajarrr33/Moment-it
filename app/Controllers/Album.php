@@ -32,20 +32,9 @@ class Album extends BaseController
           return redirect()->to('/detail-postingan/' . $id_postingan);
      }
 
-     $gambar = $this->GambarModels->where("id_postingan",$id_postingan)->first();
-
-     $folder = uniqid() . '-' . date('Y-m-d');
-
-     directory_mirror(
-          FCPATH . 'upload/gambar_postingan/' . $gambar['folder'] . "/",
-          FCPATH . 'upload/album_thumnail/' . $folder
-     );
-
      $data = [
           "id_user" => $this->session->get('id_user'),
           'album_name' => $request['album_name'],
-          "folder" => $folder,
-          "thumnail" =>  $gambar['img'],
      ];
 
      $this->AlbumModels->insert($data);
@@ -80,9 +69,6 @@ class Album extends BaseController
      $album = $this->AlbumModels->where('id_album',$id_album)->first();
 
      $this->AlbumItemsModels->where('id_album',$id_album)->delete();
-
-     unlink(FCPATH . 'upload/album_thumnail/' . $album['folder'] . "/" . $album['thumnail']);
-     rmdir(FCPATH . 'upload/album_thumnail/' . $album['folder']);
 
      $this->AlbumModels->where('id_album',$id_album)->delete();
 
